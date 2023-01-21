@@ -32,7 +32,7 @@ public class DVDDao {
 		Connection dbConnection = null;
 		Statement statement = null;
 		ResultSet result = null;
-		String query = "SELECT * FROM collection;";
+		String query = "SELECT * FROM Product;";
 		ArrayList<DVD> dvds = new ArrayList<>();
 
 		try {
@@ -42,12 +42,12 @@ public class DVDDao {
 			result = statement.executeQuery(query); // Execute SQL query and record response to string
 			while (result.next()) {
 
-				int id = result.getInt("ID");
-				String title = result.getString("Title");
-				String genre = result.getString("Genre");
-				int year = result.getInt("Year");
-				int rating = result.getInt("rating");
-				dvds.add(new DVD(id,title,genre,year,rating));
+				int id = result.getInt("Id");
+				String sku = result.getString("SKU");
+				String description = result.getString("Description");
+				String category = result.getString("Category");
+				double price = result.getDouble("Price");
+				dvds.add(new DVD(id,sku,description,category,price));
 			}
 		} catch(Exception e) {
 			System.out.println("get all dvds: "+e);
@@ -72,7 +72,7 @@ public class DVDDao {
 		Statement statement = null;
 		ResultSet result = null;
 
-		String query = "SELECT * FROM collection WHERE ID =" + film_id + ";";
+		String query = "SELECT * FROM Product WHERE ID =" + film_id + ";";
 
 		try {
 			dbConnection = getDBConnection();
@@ -85,11 +85,11 @@ public class DVDDao {
 
 
 				int id = result.getInt("ID");
-				String title = result.getString("Title");
-				String genre = result.getString("Genre");
-				int year = result.getInt("Year");
-				int rating = result.getInt("Rating");
-				temp = new DVD(id,title,genre,year,rating);
+				String sku = result.getString("SKU");
+				String description = result.getString("Description");
+				String category = result.getString("Category");
+				double price = result.getDouble("Price");
+				temp = new DVD(id,sku,description,category,price);
 
 			}
 		} finally {
@@ -111,7 +111,7 @@ public class DVDDao {
 		Connection dbConnection = null;
 		Statement statement = null;
 		int result = 0;
-		String query = "DELETE FROM collection WHERE ID = " + film_id + ";";
+		String query = "DELETE FROM Product WHERE ID = " + film_id + ";";
 		try {
 			dbConnection = getDBConnection();
 			statement = dbConnection.createStatement();
@@ -137,8 +137,10 @@ public class DVDDao {
 		Connection dbConnection = null;
 		Statement statement = null;
 
-		String query = "UPDATE collection " + "SET ID = '" + dvd.getID() + "'," + "Title = '"
-				+ dvd.getTitle() + "'," + "Genre= '" + dvd.getGenre() + "'," + "Year= '" + dvd.getYear() +" WHERE ID = " + dvd.getID()
+		String query = "UPDATE Product " + "SET Id = '" + dvd.getID() + "'," + "Sku = '"
+				+ dvd.getSKU() + "'," + "Description= '" + dvd.getDescription() + "'," + "Category= '" + dvd.getCategory()
+				+ "Price = '" + dvd.getPrice()
+				+" WHERE ID = " + dvd.getID()
 				+ ";";
 
 		try {
@@ -169,7 +171,7 @@ public class DVDDao {
 		Connection dbConnection = null;
 		Statement statement = null;
 		
-		String update = "INSERT INTO collection (ID, Title, Genre, Year, Rating) VALUES ("+in.getID()+",'"+in.getTitle()+"','"+in.getGenre()+"',"+in.getYear()+ ","+in.getRating()+");";
+		String update = "INSERT INTO Product (ID, Sku, Description, Category, Price) VALUES ("+in.getID()+",'"+in.getSKU()+"','"+in.getDescription()+"','"+in.getCategory()+ "',"+in.getPrice()+");";
 		boolean ok = false;
 			try {
 					dbConnection = getDBConnection();

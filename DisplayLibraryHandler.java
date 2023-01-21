@@ -30,10 +30,10 @@ public class DisplayLibraryHandler implements HttpHandler{
       "<thead>" +
       "  <tr>" +
       "    <th>ID</th>" +
-      "    <th>Title</th>" +
-      "    <th>Genre</th>" +
-      "    <th>Year</th>" +
-      "    <th>Rating</th>" +
+      "    <th>SKU</th>" +
+      "    <th>Description</th>" +
+      "    <th>Category</th>" +
+      "    <th>Price</th>" +
       "    <th>Delete</th" +
       "  </tr>" +
       "</thead>" +
@@ -43,10 +43,10 @@ public class DisplayLibraryHandler implements HttpHandler{
         out.write(
       "  <tr>"       +
       "    <td>"+ d.getID() + "</td>" +
-      "    <td>"+ d.getTitle() + "</td>" +
-      "    <td>"+ d.getGenre() + "</td>" +
-      "    <td>"+ d.getYear() + "</td>" +
-      "    <td>"+ d.getRating() + "</td>" +
+      "    <td>"+ d.getSKU() + "</td>" +
+      "    <td>"+ d.getDescription() + "</td>" +
+      "    <td>"+ d.getCategory() + "</td>" +
+      "    <td>"+ d.getPrice() + "</td>" +
       "    <td> <a href=\"/delete?id=" + d.getID() + "\"> delete </a> </td>" +  
       "  </tr>" 
         );

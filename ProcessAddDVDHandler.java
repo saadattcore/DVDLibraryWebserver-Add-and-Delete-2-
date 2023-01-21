@@ -30,14 +30,15 @@ public class ProcessAddDVDHandler implements HttpHandler{
 
     System.out.println("about to get data");
 
-    String title = parms.get("title");
-    String genre = parms.get("genre");
-    int rating = Integer.parseInt(parms.get("rating"));
-    int year = Integer.parseInt(parms.get("year"));
-    int ID = Integer.parseInt(parms.get("id"));
+    String sku = parms.get("sku");
+    String description = parms.get("description");
+    String category = parms.get("category");
+    double price = Double.parseDouble(parms.get("price"));
+    int id = Integer.parseInt(parms.get("id"));
+
    
     System.out.println("about to create dvd"); // Debugging message 
-    DVD dvd = new DVD(ID,title,genre,year,rating);
+    DVD dvd = new DVD(id,sku,description,category,price);
     System.out.println("DVD to Add" + dvd);
 
     try {  
@@ -68,10 +69,10 @@ public class ProcessAddDVDHandler implements HttpHandler{
         out.write(
       "  <tr>"       +
       "    <td>"+ dvd.getID() + "</td>" +
-      "    <td>"+ dvd.getTitle() + "</td>" +
-      "    <td>"+ dvd.getGenre() + "</td>" +
-      "    <td>"+ dvd.getYear() + "</td>" +
-      "    <td>"+ dvd.getRating() + "</td>" +
+      "    <td>"+ dvd.getSKU() + "</td>" +
+      "    <td>"+ dvd.getDescription() + "</td>" +
+      "    <td>"+ dvd.getCategory() + "</td>" +
+      "    <td>"+ dvd.getPrice() + "</td>" +
       "  </tr>" 
         );
    

@@ -3,19 +3,20 @@
 public class DVD {
 	
 	private int id;
-	private String title;
-	private String genre;
-	private int year;
-  private int rating;
+	private String sku;
+	private String description;
+	private String category;
+  	private double price;
 	
 	
-	public DVD(int ID, String title, String genre, int year, int rating) {
+	public DVD(int ID, String sku, String description, String category, double price
+	) {
 		
 		this.id = ID;
-		this.title = title;
-		this.genre = genre;
-		this.year = year;
-    this.rating = rating;
+		this.sku = sku;
+		this.description = description;
+		this.category = category;
+    	this.price = price;
 	}
 	public int getID() {
 		return this.id;
@@ -23,34 +24,34 @@ public class DVD {
 	public void setID(int id) {
 		this.id = id;
 	}
-	public String getGenre() {
-		return this.genre;
+	public String getSKU() {
+		return this.sku;
 	}
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setSKU(String sku) {
+		this.sku = sku;
 	}
-	public String getTitle() {
-		return this.title;
+	public String getDescription() {
+		return this.description;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public int getYear() {
-		return this.year;
+	public String getCategory() {
+		return this.category;
 	}
-	public void setYear(int year) {
-		this.year = year;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-  public int getRating() {
-		return this.rating;
+  public double getPrice() {
+		return this.price;
 	}
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	@Override
 	public String toString() {
-		return "DVD [ID=" + this.id + ", Title=" + this.title + ", Genre=" + this.genre + ", Year=" + this.year + ",Rating=" + this.rating + "]";
+		return "DVD [ID=" + this.id + ", SKU=" + this.sku + ", Description=" + this.description + ", Category=" + this.category + ",Price=" + this.price + "]";
 	}
 	
 }

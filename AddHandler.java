@@ -18,8 +18,6 @@ public class AddHandler implements HttpHandler{
     
       DVDDao dvds = new DVDDao();
 
-    
-
 
 
      out.write(
@@ -35,17 +33,17 @@ public class AddHandler implements HttpHandler{
       "<label for=\"ID\">ID</label> " + 
       "<input type=\"text\" class=\"form-control\" name=\"id\" id=\"id\"> " + 
        
-      "<label for=\"title\">Title</label> " + 
-      "<input type=\"text\" class=\"form-control\" name=\"title\" id=\"title\"> " + 
+      "<label for=\"title\">Sku</label> " +
+      "<input type=\"text\" class=\"form-control\" name=\"sku\" id=\"sku\"> " +
 
-      "<label for=\"genre\">Genre</label> " + 
-      "<input type=\"text\" class=\"form-control\" name=\"genre\" id=\"genre\"> " + 
+      "<label for=\"genre\">Description</label> " +
+      "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"> " +
 
-      "<label for=\"year\">Year</label> " + 
-      "<input type=\"text\" class=\"form-control\" name=\"year\" id=\"year\"> " + 
+      "<label for=\"year\">Category</label> " +
+      "<input type=\"text\" class=\"form-control\" name=\"category\" id=\"category\"> " +
 
-      "<label for=\"rating\">Rating</label> " + 
-      "<input type=\"text\" class=\"form-control\" name=\"rating\" id=\"rating\" >" +
+      "<label for=\"rating\">Price</label> " +
+      "<input type=\"text\" class=\"form-control\" name=\"price\" id=\"price\" >" +
       "<button type=\"submit\" class=\"btn btn-primary\">Submit</button> " + 
       "</div>" + 
       "</form>" +

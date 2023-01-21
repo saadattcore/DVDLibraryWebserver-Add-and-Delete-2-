@@ -33,6 +33,12 @@ public class DeleteHandler implements HttpHandler{
     try{
       // get the dvd details before we delete from the Database
       DVD deletedDVD = dvds.getDVD(ID);
+
+      if(deletedDVD == null){
+          System.out.println("Bhosdikay select sahi wala id");
+          return;
+      }
+
       // actually delete from database;
       dvds.deleteDVD(ID);
       
@@ -61,10 +67,10 @@ public class DeleteHandler implements HttpHandler{
         out.write(
       "  <tr>"       +
       "    <td>"+ deletedDVD.getID() + "</td>" +
-      "    <td>"+ deletedDVD.getTitle() + "</td>" +
-      "    <td>"+ deletedDVD.getGenre() + "</td>" +
-      "    <td>"+ deletedDVD.getYear() + "</td>" +
-      "    <td>"+ deletedDVD.getRating() + "</td>" +
+      "    <td>"+ deletedDVD.getSKU() + "</td>" +
+      "    <td>"+ deletedDVD.getDescription() + "</td>" +
+      "    <td>"+ deletedDVD.getCategory() + "</td>" +
+      "    <td>"+ deletedDVD.getPrice() + "</td>" +
       "  </tr>" 
         );
       
