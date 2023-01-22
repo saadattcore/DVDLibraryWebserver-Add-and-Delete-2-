@@ -31,13 +31,15 @@ public class ProcessAddDVDHandler implements HttpHandler{
 
         String sku = parms.get("sku");
         String description = parms.get("description");
+        String type1 = parms.get("type1");
+        String type2 = parms.get("type2");
         String category = parms.get("category");
         double price = Double.parseDouble(parms.get("price"));
         int id = Integer.parseInt(parms.get("id"));
 
 
         System.out.println("about to create product"); // Debugging message
-        Product product = new Product(id,sku,description,price,category);
+        Product product = new Product(id,sku,description,type1,type2,price,category);
         System.out.println("Product to Add" + product);
 
         try {
