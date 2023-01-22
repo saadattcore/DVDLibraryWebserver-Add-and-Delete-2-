@@ -1,22 +1,21 @@
 
 
-public class DVD {
-	
+public class Product {
+
 	private int id;
 	private String sku;
 	private String description;
 	private String category;
-  	private double price;
-	
-	
-	public DVD(int ID, String sku, String description, String category, double price
-	) {
-		
+	private double price;
+
+
+	public Product(int ID, String sku, String description, double price, String category) {
+
 		this.id = ID;
 		this.sku = sku;
 		this.description = description;
 		this.category = category;
-    	this.price = price;
+		this.price = price;
 	}
 	public int getID() {
 		return this.id;
@@ -43,7 +42,7 @@ public class DVD {
 		this.category = category;
 	}
 
-  public double getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 	public void setPrice(double price) {
@@ -51,7 +50,7 @@ public class DVD {
 	}
 	@Override
 	public String toString() {
-		return "DVD [ID=" + this.id + ", SKU=" + this.sku + ", Description=" + this.description + ", Category=" + this.category + ",Price=" + this.price + "]";
+		return "Product [ID= " + this.id + ", SKU= " + this.sku + ", Description= " + this.description + ", Category= " + this.category + ", Price= " + this.price + "]";
 	}
-	
+
 }

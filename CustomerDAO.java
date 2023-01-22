@@ -155,7 +155,7 @@ public class CustomerDAO {
         Statement statement = null;
 
         String query = "UPDATE Customer " +  "FirstName = '"
-                + customer.getFirstName() + "'," + "SecondName= '" + customer.getSecondName() + "'," + "Email= '" + customer.getEmail()
+                + customer.getFirstName() + "'," + "SecondName= '" + customer.getLastName() + "'," + "Email= '" + customer.getEmail()
                 + "'," + "Password= '" + customer.getPassword() + "'"
                 + "TelephoneNumber = " + customer.getTelePhoneNumber()
                 +" WHERE ID = " + customer.getCustomerId()
@@ -189,7 +189,7 @@ public class CustomerDAO {
         Connection dbConnection = null;
         Statement statement = null;
 
-        String update = "INSERT INTO Customer (FirstName, SecondName, Email, Password, TelephoNumber) VALUES ("+in.getFirstName()+",'"+in.getSecondName()+"','"+in.getEmail()+"','"+in.getPassword()+ "',"+in.getTelePhoneNumber()+");";
+        String update = "INSERT INTO Customer (FirstName, SecondName, Email, Password, TelephoNumber) VALUES ("+in.getFirstName()+",'"+in.getLastName()+"','"+in.getEmail()+"','"+in.getPassword()+ "',"+in.getTelePhoneNumber()+");";
         boolean ok = false;
         try {
             dbConnection = getDBConnection();

@@ -38,11 +38,11 @@ public class ProcessUpdateProduct implements HttpHandler{
 
         try {
 
-           DVD dbProduct =  productDAO.getDVD(id);
+           Product dbProduct =  productDAO.getProduct(id);
 
            if(dbProduct == null)
            {
-               System.out.println("Product does not found");
+               System.out.println("Product not found");
                 return;
            }
 
@@ -56,7 +56,7 @@ public class ProcessUpdateProduct implements HttpHandler{
 
             System.out.println("DVD to Add" + dbProduct);
 
-            productDAO.updateDVD(dbProduct); // add to database
+            productDAO.updateProduct(dbProduct); // add to database
 
 
             out.write(

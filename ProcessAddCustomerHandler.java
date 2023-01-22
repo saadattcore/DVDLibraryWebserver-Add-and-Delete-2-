@@ -31,7 +31,7 @@ public class ProcessAddCustomerHandler implements HttpHandler{
 
         int id = Integer.parseInt(parms.get("id"));
         String firstName = parms.get("firstname");
-        String secondname = parms.get("secondname");
+        String lastName = parms.get("lastname");
         String email = parms.get("email");
         String password = parms.get("password");
         String telephone = parms.get("telephone");
@@ -39,7 +39,7 @@ public class ProcessAddCustomerHandler implements HttpHandler{
 
 
         System.out.println("about to create customer"); // Debugging message
-        Customer customer = new Customer(id,firstName,secondname,email,password,telephone);
+        Customer customer = new Customer(id,firstName,lastName,email,password,telephone);
         System.out.println("DVD to Add" + customer);
 
         try {
@@ -71,7 +71,7 @@ public class ProcessAddCustomerHandler implements HttpHandler{
                     "  <tr>"       +
                             "    <td>"+ customer.getCustomerId() + "</td>" +
                             "    <td>"+ customer.getFirstName() + "</td>" +
-                            "    <td>"+ customer.getSecondName() + "</td>" +
+                            "    <td>"+ customer.getLastName() + "</td>" +
                             "    <td>"+ customer.getEmail() + "</td>" +
                             "    <td>"+ customer.getTelePhoneNumber() + "</td>" +
                             "    <td>"+ customer.getCustomerAddressId() + "</td>" +

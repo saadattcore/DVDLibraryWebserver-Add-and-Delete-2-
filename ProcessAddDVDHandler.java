@@ -8,84 +8,84 @@ import java.io.IOException;
 import java.util.Map;
 
 public class ProcessAddDVDHandler implements HttpHandler{
-  public void handle(HttpExchange he) throws IOException {
-   
-    System.out.println("ProcessAddDVD Called");
-    he.sendResponseHeaders(200,0);
-    BufferedWriter out = new BufferedWriter(  
-        new OutputStreamWriter(he.getResponseBody() ));
-    
-    // Get param from URL
-    Map <String,String> parms = Util.requestStringToMap
-    (he.getRequestURI().getQuery());
+    public void handle(HttpExchange he) throws IOException {
 
-    // print the params for debugging 
-    System.out.println(parms);
+        System.out.println("ProcessAddProduct Called");
+        he.sendResponseHeaders(200,0);
+        BufferedWriter out = new BufferedWriter(
+                new OutputStreamWriter(he.getResponseBody() ));
 
-    //get ID number
-  
+        // Get param from URL
+        Map <String,String> parms = Util.requestStringToMap
+                (he.getRequestURI().getQuery());
 
-    ProductDAO dvds = new ProductDAO();
+        // print the params for debugging
+        System.out.println(parms);
 
-    System.out.println("about to get data");
+        //get ID number
 
-    String sku = parms.get("sku");
-    String description = parms.get("description");
-    String category = parms.get("category");
-    double price = Double.parseDouble(parms.get("price"));
-    int id = Integer.parseInt(parms.get("id"));
 
-   
-    System.out.println("about to create dvd"); // Debugging message 
-    DVD dvd = new DVD(id,sku,description,category,price);
-    System.out.println("DVD to Add" + dvd);
+        ProductDAO products = new ProductDAO();
 
-    try {  
-    dvds.addDVD(dvd); // add to database 
-      
+        System.out.println("about to get data");
 
-     out.write(
-      "<html>" +
-      "<head> <title>DVD Library</title> "+
-         "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">" +
-      "</head>" +
-      "<body>" +
-      "<h1> DVD Added</h1>"+
-      "<table class=\"table\">" +
-      "<thead>" +
-      "  <tr>" +
-      "    <th>ID</th>" +
-      "    <th>Title</th>" +
-      "    <th>Genre</th>" +
-      "    <th>Year</th>" +
-      "    <th>Rating</th>" +
-    
-      "  </tr>" +
-      "</thead>" +
-      "<tbody>");
+        String sku = parms.get("sku");
+        String description = parms.get("description");
+        String category = parms.get("category");
+        double price = Double.parseDouble(parms.get("price"));
+        int id = Integer.parseInt(parms.get("id"));
 
-      
-        out.write(
-      "  <tr>"       +
-      "    <td>"+ dvd.getID() + "</td>" +
-      "    <td>"+ dvd.getSKU() + "</td>" +
-      "    <td>"+ dvd.getDescription() + "</td>" +
-      "    <td>"+ dvd.getCategory() + "</td>" +
-      "    <td>"+ dvd.getPrice() + "</td>" +
-      "  </tr>" 
-        );
-   
-      out.write(
-      "</tbody>" +
-      "</table>" +
-      "<a href=\"/\">Back to List </a>"+
-      "</body>" +
-      "</html>");
-   }catch(SQLException se){
-      System.out.println(se.getMessage());
+
+        System.out.println("about to create product"); // Debugging message
+        Product product = new Product(id,sku,description,price,category);
+        System.out.println("Product to Add" + product);
+
+        try {
+            products.addProduct(product); // add to database
+
+
+            out.write(
+                    "<html>" +
+                            "<head> <title>Product Library</title> "+
+                            "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">" +
+                            "</head>" +
+                            "<body>" +
+                            "<h1> Product Added</h1>"+
+                            "<table class=\"table\">" +
+                            "<thead>" +
+                            "  <tr>" +
+                            "    <th>ID</th>" +
+                            "    <th>Title</th>" +
+                            "    <th>Genre</th>" +
+                            "    <th>Year</th>" +
+                            "    <th>Rating</th>" +
+
+                            "  </tr>" +
+                            "</thead>" +
+                            "<tbody>");
+
+
+            out.write(
+                    "  <tr>"       +
+                            "    <td>"+ product.getID() + "</td>" +
+                            "    <td>"+ product.getSKU() + "</td>" +
+                            "    <td>"+ product.getDescription() + "</td>" +
+                            "    <td>"+ product.getCategory() + "</td>" +
+                            "    <td>"+ product.getPrice() + "</td>" +
+                            "  </tr>"
+            );
+
+            out.write(
+                    "</tbody>" +
+                            "</table>" +
+                            "<a href=\"/\">Back to List </a>"+
+                            "</body>" +
+                            "</html>");
+        }catch(SQLException se){
+            System.out.println(se.getMessage());
+        }
+
+        out.close();
+
     }
-  
-    out.close();
-
-}
 }

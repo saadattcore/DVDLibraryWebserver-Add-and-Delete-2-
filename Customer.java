@@ -1,18 +1,18 @@
 public class Customer {
     private int customerId;
     private String firstName;
-    private String secondName;
+    private String lastName;
     private String email;
     private String password;
     private String telePhoneNumber;
     private int CustomerAddressId;
 
-    Customer(int customerId,String firstName, String secondName,String email, String passowrd,String telePhone){
+    Customer(int customerId, String firstName, String secondName, String email, String password, String telePhone){
         this.customerId = customerId;
         this.firstName = firstName;
-        this.secondName = secondName;
+        this.lastName = secondName;
         this.email = email;
-        this.password = passowrd;
+        this.password = password;
         this.telePhoneNumber = telePhone;
     }
 
@@ -30,12 +30,12 @@ public class Customer {
         this.firstName = firstName;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {

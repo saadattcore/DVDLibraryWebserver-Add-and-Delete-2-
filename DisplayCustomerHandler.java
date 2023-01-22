@@ -50,7 +50,7 @@ public class DisplayCustomerHandler implements HttpHandler{
                         "  <tr>"       +
                                 "    <td>"+ d.getCustomerId() + "</td>" +
                                 "    <td>"+ d.getFirstName() + "</td>" +
-                                "    <td>"+ d.getSecondName() + "</td>" +
+                                "    <td>"+ d.getLastName() + "</td>" +
                                 "    <td>"+ d.getEmail() + "</td>" +
                                 "    <td>"+ d.getCustomerId() + "</td>" +
                                 "    <td> <a href=\"/delete?id=" + d.getCustomerId() + "\"> delete </a> </td>" +

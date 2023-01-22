@@ -7,50 +7,50 @@ import java.util.ArrayList;
 
 
 public class ProductDAO {
-	
+
 	public ProductDAO() {}
-	
+
 	private static Connection getDBConnection() {
 		Connection dbConnection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			} catch (ClassNotFoundException e) {
-				System.out.println(e.getMessage());
-			}
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		try {
 			String dbURL = "jdbc:sqlite:dvd.sqlite";
 			dbConnection = DriverManager.getConnection(dbURL);
 			return dbConnection;
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
-		return dbConnection;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		}
-	
-	public ArrayList<DVD> getAllDVDs() throws SQLException {
-		System.out.println("Retrieving all dvds ...");
+		return dbConnection;
+	}
+
+	public ArrayList<Product> getAllProducts() throws SQLException {
+		System.out.println("Retrieving all products ...");
 		Connection dbConnection = null;
 		Statement statement = null;
 		ResultSet result = null;
 		String query = "SELECT * FROM Product;";
-		ArrayList<DVD> dvds = new ArrayList<>();
+		ArrayList<Product> products = new ArrayList<>();
 
 		try {
 			dbConnection = getDBConnection();
 			statement = dbConnection.createStatement();
-			System.out.println("DBQuery = " + query);
+			//	System.out.println("DBQuery = " + query);
 			result = statement.executeQuery(query); // Execute SQL query and record response to string
 			while (result.next()) {
 
-				int id = result.getInt("Id");
+				int id = result.getInt("ID");
 				String sku = result.getString("SKU");
 				String description = result.getString("Description");
 				String category = result.getString("Category");
 				double price = result.getDouble("Price");
-				dvds.add(new DVD(id,sku,description,category,price));
+				products.add(new Product(id,sku,description,price,category));
 			}
 		} catch(Exception e) {
-			System.out.println("get all dvds: "+e);
+			System.out.println("get all products: "+e);
 		} finally {
 			if (result != null) {
 				result.close();
@@ -62,23 +62,23 @@ public class ProductDAO {
 				dbConnection.close();
 			}
 		}
-		return dvds;
+		return products;
 	}
 
-	public DVD getDVD(int film_id) throws SQLException {
+	public Product getProduct(int product_id) throws SQLException {
 
-		DVD temp = null;
+		Product temp = null;
 		Connection dbConnection = null;
 		Statement statement = null;
 		ResultSet result = null;
 
-		String query = "SELECT * FROM Product WHERE ID =" + film_id + ";";
+		String query = "SELECT * FROM Product WHERE ID =" + product_id + ";";
 
 		try {
 			dbConnection = getDBConnection();
 			statement = dbConnection.createStatement();
-			System.out.println("DBQuery: " + query);
-			// execute SQL query
+			//	System.out.println("DBQuery: " + query);
+			//	execute SQL query
 			result = statement.executeQuery(query);
 
 			while (result.next()) {
@@ -87,9 +87,10 @@ public class ProductDAO {
 				int id = result.getInt("ID");
 				String sku = result.getString("SKU");
 				String description = result.getString("Description");
-				String category = result.getString("Category");
 				double price = result.getDouble("Price");
-				temp = new DVD(id,sku,description,category,price);
+				String category = result.getString("Category");
+
+				temp = new Product(id,sku,description,price,category);
 
 			}
 		} finally {
@@ -106,12 +107,12 @@ public class ProductDAO {
 		return temp;
 	}
 
-	public Boolean deleteDVD(int film_id) throws SQLException {
-		System.out.println("Deleting dvd");
+	public Boolean deleteProduct(int product_id) throws SQLException {
+		System.out.println("Deleting product");
 		Connection dbConnection = null;
 		Statement statement = null;
 		int result = 0;
-		String query = "DELETE FROM Product WHERE ID = " + film_id + ";";
+		String query = "DELETE FROM Product WHERE ID = " + product_id + ";";
 		try {
 			dbConnection = getDBConnection();
 			statement = dbConnection.createStatement();
@@ -133,15 +134,14 @@ public class ProductDAO {
 		}
 	}
 
-	public Boolean updateDVD(DVD dvd) throws SQLException {
+	public Boolean updateProduct(Product product) throws SQLException {
 		Connection dbConnection = null;
 		Statement statement = null;
 
-		String query = "UPDATE Product " +  "Sku = '"
-				+ dvd.getSKU() + "'," + "Description= '" + dvd.getDescription() + "'," + "Category= '" + dvd.getCategory()
-				+ "',"
-				+ "Price = " + dvd.getPrice()
-				+" WHERE ID = " + dvd.getID()
+		String query = "UPDATE Product " + "SET ID = '" + product.getID() + "'," + "Sku = '"
+				+ product.getSKU() + "', " + "Description = '" + product.getDescription() + "', " + "Category = '" + product.getCategory()
+				+ "', " + "Price = " + product.getPrice()
+				+" WHERE ID = " + product.getID()
 				+ ";";
 
 		try {
@@ -168,30 +168,30 @@ public class ProductDAO {
 		return true;
 	}
 
-	public boolean addDVD(DVD in) throws SQLException{
+	public boolean addProduct(Product in) throws SQLException{
 		Connection dbConnection = null;
 		Statement statement = null;
-		
+
 		String update = "INSERT INTO Product (ID, Sku, Description, Category, Price) VALUES ("+in.getID()+",'"+in.getSKU()+"','"+in.getDescription()+"','"+in.getCategory()+ "',"+in.getPrice()+");";
 		boolean ok = false;
-			try {
-					dbConnection = getDBConnection();
-					statement = dbConnection.createStatement();
-					System.out.println(update);
-		// execute SQL query
-					statement.executeUpdate(update);
-					ok = true;
-				} catch (SQLException e) {
-					System.out.println(e.getMessage());
-				} finally {
-					if (statement != null) {
-						statement.close();
-					}
-					if (dbConnection != null) {
-						dbConnection.close();
-					}
-					
-				}
-			return ok;
+		try {
+			dbConnection = getDBConnection();
+			statement = dbConnection.createStatement();
+			System.out.println(update);
+			// execute SQL query
+			statement.executeUpdate(update);
+			ok = true;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (statement != null) {
+				statement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+
+		}
+		return ok;
 	}
-	}
+}
