@@ -263,6 +263,8 @@ class Main {
     int id;
     String sku;
     String description;
+    String type1;
+    String type2;
     double price;
     String category;
 
@@ -276,6 +278,13 @@ class Main {
     System.out.println("Please enter description");
     description = in.nextLine();
 
+    System.out.println("Please enter Enter Product sub-type (1)");
+    type1 = in.nextLine();
+
+    System.out.println("Please enter Enter Product sub-type (2)");
+    type2 = in.nextLine();
+
+
     System.out.println("Please enter category");
     category = in.nextLine();
 
@@ -283,12 +292,14 @@ class Main {
     price = in.nextDouble();
     //    price = Integer.parseInt(in.nextLine());
 
-    return new Product(id, sku, description, price, category);
+    return new Product(id, sku, description, type1, type2, price, category);
   }
   private static Product updateProduct(Product product) {
     // TODO Auto-generated method stub
     String sku;
     String description;
+    String type1;
+    String type2;
     double price;
     String category;
 
@@ -304,6 +315,16 @@ class Main {
     if (description.equals(""))
       description = product.getDescription();
 
+    System.out.println("Please enter new product sub-type (1)");
+    type1 = in.nextLine();
+    if (type1.equals(""))
+      type1 = product.getType1();
+
+    System.out.println("Please enter new product sub-type (2)");
+    type2 = in.nextLine();
+    if (type2.equals(""))
+      type2 = product.getType2();
+
     System.out.println("Please enter price");
     String strPrice = in.nextLine();
     if (strPrice.equals(""))
@@ -318,7 +339,7 @@ class Main {
     else
       category = strCategory;
 
-    return new Product(product.getID(), sku, description, price, category);
+    return new Product(product.getID(), sku, description, type1, type2, price, category);
   }
 
 }

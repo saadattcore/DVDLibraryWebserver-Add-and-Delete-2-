@@ -45,9 +45,13 @@ public class ProductDAO {
 				int id = result.getInt("ID");
 				String sku = result.getString("SKU");
 				String description = result.getString("Description");
+				String type1 = result.getString("Type1");
+//				System.out.println(type1);
+				String type2 = result.getString("Type2");
+//				System.out.println(type2);
 				String category = result.getString("Category");
 				double price = result.getDouble("Price");
-				products.add(new Product(id,sku,description,price,category));
+				products.add(new Product(id,sku,description,type1,type2,price,category));
 			}
 		} catch(Exception e) {
 			System.out.println("get all products: "+e);
@@ -87,10 +91,12 @@ public class ProductDAO {
 				int id = result.getInt("ID");
 				String sku = result.getString("SKU");
 				String description = result.getString("Description");
+				String type1 = result.getString("Type1");
+				String type2 = result.getString("Type2");
 				double price = result.getDouble("Price");
 				String category = result.getString("Category");
 
-				temp = new Product(id,sku,description,price,category);
+				temp = new Product(id,sku,description,type1,type2,price,category);
 
 			}
 		} finally {
@@ -139,7 +145,7 @@ public class ProductDAO {
 		Statement statement = null;
 
 		String query = "UPDATE Product " + "SET ID = '" + product.getID() + "'," + "Sku = '"
-				+ product.getSKU() + "', " + "Description = '" + product.getDescription() + "', " + "Category = '" + product.getCategory()
+				+ product.getSKU() + "', " + "Description = '" + product.getDescription() + "', " + "Type1 = '" + product.getType1() + "', " + "Type2 = '" + product.getType2() + "', " + "Category = '" + product.getCategory()
 				+ "', " + "Price = " + product.getPrice()
 				+" WHERE ID = " + product.getID()
 				+ ";";
@@ -172,7 +178,7 @@ public class ProductDAO {
 		Connection dbConnection = null;
 		Statement statement = null;
 
-		String update = "INSERT INTO Product (ID, Sku, Description, Category, Price) VALUES ("+in.getID()+",'"+in.getSKU()+"','"+in.getDescription()+"','"+in.getCategory()+ "',"+in.getPrice()+");";
+		String update = "INSERT INTO Product (ID, Sku, Description, Type1, Type2, Category, Price) VALUES ("+in.getID()+",'"+in.getSKU()+"','"+in.getDescription()+"','"+in.getType1()+"','"+in.getType2()+"','"+in.getCategory()+ "',"+in.getPrice()+");";
 		boolean ok = false;
 		try {
 			dbConnection = getDBConnection();
