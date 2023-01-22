@@ -25,21 +25,16 @@ public class DeleteHandler implements HttpHandler{
     //get ID number
     int ID = Integer.parseInt(parms.get("id"));
 
-    ProductDAO dvds = new ProductDAO();
+    ProductDAO products = new ProductDAO();
 
     
 
     try{
       // get the dvd details before we delete from the Database
-      DVD deletedDVD = dvds.getDVD(ID);
-
-      if(deletedDVD == null){
-          System.out.println("Bhosdikay select sahi wala id");
-          return;
-      }
+      Product deletedProduct = products.getProduct(ID);
 
       // actually delete from database;
-      dvds.deleteDVD(ID);
+      products.deleteProduct(ID);
       
 
      out.write(
@@ -48,7 +43,7 @@ public class DeleteHandler implements HttpHandler{
          "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">" +
       "</head>" +
       "<body>" +
-      "<h1> DVD Deleted</h1>"+
+      "<h1> Product Deleted</h1>"+
       "<table class=\"table\">" +
       "<thead>" +
       "  <tr>" +
@@ -65,11 +60,11 @@ public class DeleteHandler implements HttpHandler{
       
         out.write(
       "  <tr>"       +
-      "    <td>"+ deletedDVD.getID() + "</td>" +
-      "    <td>"+ deletedDVD.getSKU() + "</td>" +
-      "    <td>"+ deletedDVD.getDescription() + "</td>" +
-      "    <td>"+ deletedDVD.getCategory() + "</td>" +
-      "    <td>"+ deletedDVD.getPrice() + "</td>" +
+      "    <td>"+ deletedProduct.getID() + "</td>" +
+      "    <td>"+ deletedProduct.getSKU() + "</td>" +
+      "    <td>"+ deletedProduct.getDescription() + "</td>" +
+      "    <td>"+ deletedProduct.getCategory() + "</td>" +
+      "    <td>"+ deletedProduct.getPrice() + "</td>" +
       "  </tr>" 
         );
       

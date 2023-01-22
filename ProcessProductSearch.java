@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class ProcessProductSearch implements HttpHandler{
@@ -41,23 +38,23 @@ public class ProcessProductSearch implements HttpHandler{
 
             System.out.println("about to get data");
 
-            ArrayList<DVD> dbProducts =  productDAO.getAllDVDs();
+            ArrayList<Product> dbProducts =  productDAO.getAllProducts();
 
-            ArrayList<DVD> filterDBProducts = new ArrayList<DVD>() {
+            ArrayList<Product> filterDBProducts = new ArrayList<Product>() {
             };
 
             if ((description != null && description.equals("")) && (category != null && category.equals(""))){
-              filterDBProducts =  (ArrayList<DVD>) dbProducts.stream()
+              filterDBProducts =  (ArrayList<Product>) dbProducts.stream()
                     .filter(p -> p.getDescription().equals(description) && p.getCategory().equals(category))
                     .collect(Collectors.toList());
             }
             else  if(description != null && !description.equals("") )
             {
-              filterDBProducts =  (ArrayList<DVD>) dbProducts.stream().filter(p -> p.getDescription().toLowerCase()
+              filterDBProducts =  (ArrayList<Product>) dbProducts.stream().filter(p -> p.getDescription().toLowerCase()
                       .contains(description) ).collect(Collectors.toList());
             }else
             {
-                filterDBProducts =  (ArrayList<DVD>) dbProducts.stream().filter(p -> p.getCategory().toLowerCase().contains(category) )
+                filterDBProducts =  (ArrayList<Product>) dbProducts.stream().filter(p -> p.getCategory().toLowerCase().contains(category) )
                         .collect(Collectors.toList());
             }
 
@@ -88,7 +85,7 @@ public class ProcessProductSearch implements HttpHandler{
                             "  </tr>" +
                             "</thead>" +
                             "<tbody>");
-            for (DVD product:filterDBProducts ) {
+            for (Product product:filterDBProducts ) {
                 out.write(
                         "  <tr>"       +
                                 "    <td>"+ product.getID() + "</td>" +

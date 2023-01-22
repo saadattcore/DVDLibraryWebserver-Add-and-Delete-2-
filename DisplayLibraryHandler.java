@@ -13,9 +13,9 @@ public class DisplayLibraryHandler implements HttpHandler{
     BufferedWriter out = new BufferedWriter(  
         new OutputStreamWriter(he.getResponseBody() ));
     
-    ProductDAO dvds = new ProductDAO();
+    ProductDAO products = new ProductDAO();
     try{
-    ArrayList<DVD> allDVDS = dvds.getAllDVDs();
+    ArrayList<Product> allDVDS = products.getAllProducts();
 
     out.write(
       "<html>" +
@@ -44,7 +44,7 @@ public class DisplayLibraryHandler implements HttpHandler{
       "</thead>" +
       "<tbody>");
 
-      for (DVD d : allDVDS){
+      for (Product d : allDVDS){
         out.write(
       "  <tr>"       +
       "    <td>"+ d.getID() + "</td>" +

@@ -31,7 +31,7 @@ public class UpdateHandler implements HttpHandler{
 
         try{
             // get the dvd details before we delete from the Database
-            DVD updateProduct = dvds.getDVD(ID);
+            Product updateProduct = dvds.getProduct(ID);
 
             out.write(
                     "<html>" +
