@@ -14,7 +14,12 @@ class Main {
     server.createContext("/dvds", new DisplayLibraryHandler() );
     server.createContext("/delete", new DeleteHandler() ); 
     server.createContext("/add", new AddHandler());
+
     server.createContext("/processAddDVD", new ProcessAddDVDHandler());
+    server.createContext("/update", new UpdateHandler());
+    server.createContext("/processUpdateProduct", new ProcessUpdateProduct());
+    server.createContext("/processProductSearch", new ProcessProductSearch());
+
     
     server.setExecutor(null);
     server.start();

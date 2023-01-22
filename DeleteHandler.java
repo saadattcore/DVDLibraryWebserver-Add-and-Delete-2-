@@ -1,8 +1,7 @@
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
-import java.util.ArrayList;
+
 import java.sql.SQLException;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class DeleteHandler implements HttpHandler{
     //get ID number
     int ID = Integer.parseInt(parms.get("id"));
 
-    DVDDao dvds = new DVDDao();
+    ProductDAO dvds = new ProductDAO();
 
     
 

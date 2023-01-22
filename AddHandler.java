@@ -1,12 +1,9 @@
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
-import java.util.ArrayList;
-import java.sql.SQLException;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.Map;
 
 public class AddHandler implements HttpHandler{
   public void handle(HttpExchange he) throws IOException {
@@ -16,7 +13,7 @@ public class AddHandler implements HttpHandler{
     BufferedWriter out = new BufferedWriter(  
         new OutputStreamWriter(he.getResponseBody() ));
     
-      DVDDao dvds = new DVDDao();
+      ProductDAO dvds = new ProductDAO();
 
 
 

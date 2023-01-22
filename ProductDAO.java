@@ -6,9 +6,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 
-public class DVDDao {
+public class ProductDAO {
 	
-	public DVDDao() {}
+	public ProductDAO() {}
 	
 	private static Connection getDBConnection() {
 		Connection dbConnection = null;
@@ -137,9 +137,10 @@ public class DVDDao {
 		Connection dbConnection = null;
 		Statement statement = null;
 
-		String query = "UPDATE Product " + "SET Id = '" + dvd.getID() + "'," + "Sku = '"
+		String query = "UPDATE Product " +  "Sku = '"
 				+ dvd.getSKU() + "'," + "Description= '" + dvd.getDescription() + "'," + "Category= '" + dvd.getCategory()
-				+ "Price = '" + dvd.getPrice()
+				+ "',"
+				+ "Price = " + dvd.getPrice()
 				+" WHERE ID = " + dvd.getID()
 				+ ";";
 
