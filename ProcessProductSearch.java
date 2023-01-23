@@ -16,7 +16,7 @@ public class ProcessProductSearch implements HttpHandler{
                 new OutputStreamWriter(he.getResponseBody() ));
         try {
 
-            System.out.println("ProcessUpdateDVD Called");
+            System.out.println("ProcessSearchDVD Called");
             he.sendResponseHeaders(200,0);
 
             URI uri =  he.getRequestURI();

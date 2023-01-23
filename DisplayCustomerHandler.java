@@ -26,10 +26,10 @@ public class DisplayCustomerHandler implements HttpHandler{
 
 
                             "<div class=\"container\">" +
-                            "<h1> DVDs in Stock!</h1>"+
+                            "<h1> List of Customers</h1>"+
                             "<form method=\"get\" action=\"/processProductSearch\" >" +
 
-                            "<input type=\"text\" id=\"txtCategory\" name=\"txtCategory\" placeholder=\"category\"> &nbsp &nbsp <input type=\"text\" id=\"txtDesc\" name=\"txtDesc\" placeholder=\"description\">&nbsp &nbsp <input type=\"submit\" id=\"txtSearch\" name=\"txtSearch\" class=\"btn btn-primary\" >"  +
+//                            "<input type=\"text\" id=\"txtCategory\" name=\"txtCategory\" placeholder=\"category\"> &nbsp &nbsp <input type=\"text\" id=\"txtDesc\" name=\"txtDesc\" placeholder=\"description\">&nbsp &nbsp <input type=\"submit\" id=\"txtSearch\" name=\"txtSearch\" class=\"btn btn-primary\" >"  +
                             "<table class=\"table\">" +
                             "<thead>" +
                             "  <tr>" +
