@@ -23,6 +23,9 @@ class Main {
     server.createContext("/processProductSearch", new ProcessProductSearch());
     server.createContext("/customers", new DisplayCustomerHandler());
     server.createContext("/addCustomers", new AddCustomerHandler());
+    server.createContext("/processShoppingCartHandler", new ProcessShoppingCartHandler());
+
+
 
     server.setExecutor(null);
     server.start();
