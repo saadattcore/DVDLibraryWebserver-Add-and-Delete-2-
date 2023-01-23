@@ -21,6 +21,8 @@ class Main {
     server.createContext("/update", new UpdateHandler());
     server.createContext("/processUpdateProduct", new ProcessUpdateProduct());
     server.createContext("/processProductSearch", new ProcessProductSearch());
+    server.createContext("/customers", new DisplayCustomerHandler());
+    server.createContext("/addCustomers", new AddCustomerHandler());
 
     server.setExecutor(null);
     server.start();

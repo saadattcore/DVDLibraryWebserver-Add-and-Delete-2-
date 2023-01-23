@@ -13,9 +13,9 @@ public class DisplayCustomerHandler implements HttpHandler{
         BufferedWriter out = new BufferedWriter(
                 new OutputStreamWriter(he.getResponseBody() ));
 
-        CustomerDAO dvds = new CustomerDAO();
+        CustomerDAO customers = new CustomerDAO();
         try{
-            ArrayList<Customer> allCustomers = dvds.getAllCustomers();
+            ArrayList<Customer> allCustomers = customers.getAllCustomers();
 
             out.write(
                     "<html>" +

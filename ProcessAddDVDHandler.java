@@ -57,11 +57,12 @@ public class ProcessAddDVDHandler implements HttpHandler{
                             "<thead>" +
                             "  <tr>" +
                             "    <th>ID</th>" +
-                            "    <th>Title</th>" +
-                            "    <th>Genre</th>" +
-                            "    <th>Year</th>" +
-                            "    <th>Rating</th>" +
-
+                            "    <th>SKU</th>" +
+                            "    <th>Description</th>" +
+                            "    <th>Type 1</th>" +
+                            "    <th>Type 2</th>" +
+                            "    <th>Category</th>" +
+                            "    <th>Price</th>" +
                             "  </tr>" +
                             "</thead>" +
                             "<tbody>");
@@ -72,6 +73,8 @@ public class ProcessAddDVDHandler implements HttpHandler{
                             "    <td>"+ product.getID() + "</td>" +
                             "    <td>"+ product.getSKU() + "</td>" +
                             "    <td>"+ product.getDescription() + "</td>" +
+                            "    <td>"+ product.getType1() + "</td>" +
+                            "    <td>"+ product.getType2() + "</td>" +
                             "    <td>"+ product.getCategory() + "</td>" +
                             "    <td>"+ product.getPrice() + "</td>" +
                             "  </tr>"

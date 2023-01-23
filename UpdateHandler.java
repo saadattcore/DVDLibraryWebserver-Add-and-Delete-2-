@@ -56,6 +56,16 @@ public class UpdateHandler implements HttpHandler{
                             "\">"
                             +
 
+                            "<label for=\"genre\">Type 1</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"" + " value=\""  + updateProduct.getType1() +
+                            "\">"
+                            +
+
+                            "<label for=\"genre\">Type 2</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"" + " value=\""  + updateProduct.getType2() +
+                            "\">"
+                            +
+
                             "<label for=\"year\">Category</label> " +
                     "<input type=\"text\" class=\"form-control\" name=\"category\" id=\"category\"" + " value=\""  + updateProduct.getCategory() +
                             "\">"

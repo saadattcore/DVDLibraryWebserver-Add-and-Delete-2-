@@ -10,7 +10,7 @@ import java.util.Map;
 public class DeleteHandler implements HttpHandler{
   public void handle(HttpExchange he) throws IOException {
    
-    System.out.println("DeleteHandler Called");
+    System.out.println("Delete Handler Called");
     he.sendResponseHeaders(200,0);
     BufferedWriter out = new BufferedWriter(  
         new OutputStreamWriter(he.getResponseBody() ));
@@ -48,10 +48,12 @@ public class DeleteHandler implements HttpHandler{
       "<thead>" +
       "  <tr>" +
       "    <th>ID</th>" +
-      "    <th>Title</th>" +
-      "    <th>Genre</th>" +
-      "    <th>Year</th>" +
-      "    <th>Rating</th>" +
+      "    <th>SKU</th>" +
+      "    <th>Description</th>" +
+      "    <th>Type 1</th>" +
+      "    <th>Type 2</th>" +
+      "    <th>Category</th>" +
+      "    <th>Price</th>" +
     
       "  </tr>" +
       "</thead>" +
@@ -63,6 +65,8 @@ public class DeleteHandler implements HttpHandler{
       "    <td>"+ deletedProduct.getID() + "</td>" +
       "    <td>"+ deletedProduct.getSKU() + "</td>" +
       "    <td>"+ deletedProduct.getDescription() + "</td>" +
+      "    <td>"+ deletedProduct.getType1() + "</td>" +
+      "    <td>"+ deletedProduct.getType2() + "</td>" +
       "    <td>"+ deletedProduct.getCategory() + "</td>" +
       "    <td>"+ deletedProduct.getPrice() + "</td>" +
       "  </tr>" 

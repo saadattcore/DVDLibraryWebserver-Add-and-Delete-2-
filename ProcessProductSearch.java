@@ -12,9 +12,6 @@ import java.util.stream.Collectors;
 public class ProcessProductSearch implements HttpHandler{
     public void handle(HttpExchange he) throws IOException {
 
-
-
-
         BufferedWriter out = new BufferedWriter(
                 new OutputStreamWriter(he.getResponseBody() ));
         try {
@@ -22,13 +19,13 @@ public class ProcessProductSearch implements HttpHandler{
             System.out.println("ProcessUpdateDVD Called");
             he.sendResponseHeaders(200,0);
 
-           URI uri =  he.getRequestURI();
-           String query = uri.getQuery();
-          String[] queryParts =  query.split("&");
+            URI uri =  he.getRequestURI();
+            String query = uri.getQuery();
+            String[] queryParts =  query.split("&");
 
-          String category = queryParts[0].split("=").length == 2 ?  queryParts[0].split("=")[1] : "";
+            String category = queryParts[0].split("=").length == 2 ?  queryParts[0].split("=")[1] : "";
 
-          String description = queryParts[1].split("=").length == 2 ?  queryParts[1].split("=")[1] : "";
+            String description = queryParts[1].split("=").length == 2 ?  queryParts[1].split("=")[1] : "";
 
 
             //get ID number
@@ -44,14 +41,14 @@ public class ProcessProductSearch implements HttpHandler{
             };
 
             if ((description != null && description.equals("")) && (category != null && category.equals(""))){
-              filterDBProducts =  (ArrayList<Product>) dbProducts.stream()
-                    .filter(p -> p.getDescription().equals(description) && p.getCategory().equals(category))
-                    .collect(Collectors.toList());
+                filterDBProducts =  (ArrayList<Product>) dbProducts.stream()
+                        .filter(p -> p.getDescription().equals(description) && p.getCategory().equals(category))
+                        .collect(Collectors.toList());
             }
             else  if(description != null && !description.equals("") )
             {
-              filterDBProducts =  (ArrayList<Product>) dbProducts.stream().filter(p -> p.getDescription().toLowerCase()
-                      .contains(description) ).collect(Collectors.toList());
+                filterDBProducts =  (ArrayList<Product>) dbProducts.stream().filter(p -> p.getDescription().toLowerCase()
+                        .contains(description) ).collect(Collectors.toList());
             }else
             {
                 filterDBProducts =  (ArrayList<Product>) dbProducts.stream().filter(p -> p.getCategory().toLowerCase().contains(category) )
@@ -64,8 +61,6 @@ public class ProcessProductSearch implements HttpHandler{
 
             System.out.println("about to update dvd"); // Debugging message
 
-
-
             out.write(
                     "<html>" +
                             "<head> <title>DVD Library</title> "+
@@ -77,11 +72,12 @@ public class ProcessProductSearch implements HttpHandler{
                             "<thead>" +
                             "  <tr>" +
                             "    <th>ID</th>" +
-                            "    <th>Title</th>" +
-                            "    <th>Genre</th>" +
-                            "    <th>Year</th>" +
-                            "    <th>Rating</th>" +
-
+                            "    <th>SKU</th>" +
+                            "    <th>Description</th>" +
+                            "    <th>Type 1</th>" +
+                            "    <th>Type 2</th>" +
+                            "    <th>Category</th>" +
+                            "    <th>Price</th>" +
                             "  </tr>" +
                             "</thead>" +
                             "<tbody>");
@@ -91,13 +87,13 @@ public class ProcessProductSearch implements HttpHandler{
                                 "    <td>"+ product.getID() + "</td>" +
                                 "    <td>"+ product.getSKU() + "</td>" +
                                 "    <td>"+ product.getDescription() + "</td>" +
+                                "    <td>"+ product.getType1() + "</td>" +
+                                "    <td>"+ product.getType2() + "</td>" +
                                 "    <td>"+ product.getCategory() + "</td>" +
                                 "    <td>"+ product.getPrice() + "</td>" +
                                 "  </tr>"
                 );
             }
-
-
 
             out.write(
                     "</tbody>" +
@@ -115,8 +111,5 @@ public class ProcessProductSearch implements HttpHandler{
         finally {
             out.close();
         }
-
-
-
     }
 }

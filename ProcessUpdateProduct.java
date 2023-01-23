@@ -31,6 +31,8 @@ public class ProcessUpdateProduct implements HttpHandler{
 
         String sku = parms.get("sku");
         String description = parms.get("description");
+        String type1 = parms.get("type1");
+        String type2 = parms.get("type2");
         String category = parms.get("category");
         double price = Double.parseDouble(parms.get("price"));
         int id = Integer.parseInt(parms.get("id"));
@@ -38,26 +40,24 @@ public class ProcessUpdateProduct implements HttpHandler{
 
         try {
 
-           Product dbProduct =  productDAO.getProduct(id);
+            Product dbProduct =  productDAO.getProduct(id);
 
-           if(dbProduct == null)
-           {
-               System.out.println("Product not found");
+            if(dbProduct == null)
+            {
+                System.out.println("Product not found");
                 return;
-           }
+            }
 
-           dbProduct.setSKU(sku);
-           dbProduct.setCategory(category);
-           dbProduct.setDescription(description);
-           dbProduct.setPrice(price);
-
+            dbProduct.setSKU(sku);
+            dbProduct.setCategory(category);
+            dbProduct.setDescription(description);
+            dbProduct.setPrice(price);
 
             System.out.println("about to update dvd"); // Debugging message
 
             System.out.println("DVD to Add" + dbProduct);
 
             productDAO.updateProduct(dbProduct); // add to database
-
 
             out.write(
                     "<html>" +
@@ -70,21 +70,24 @@ public class ProcessUpdateProduct implements HttpHandler{
                             "<thead>" +
                             "  <tr>" +
                             "    <th>ID</th>" +
-                            "    <th>Title</th>" +
-                            "    <th>Genre</th>" +
-                            "    <th>Year</th>" +
-                            "    <th>Rating</th>" +
+                            "    <th>SKU</th>" +
+                            "    <th>Description</th>" +
+                            "    <th>Type 1</th>" +
+                            "    <th>Type 2</th>" +
+                            "    <th>Category</th>" +
+                            "    <th>Price</th>" +
 
                             "  </tr>" +
                             "</thead>" +
                             "<tbody>");
-
 
             out.write(
                     "  <tr>"       +
                             "    <td>"+ dbProduct.getID() + "</td>" +
                             "    <td>"+ dbProduct.getSKU() + "</td>" +
                             "    <td>"+ dbProduct.getDescription() + "</td>" +
+                            "    <td>"+ dbProduct.getType1() + "</td>" +
+                            "    <td>"+ dbProduct.getType2() + "</td>" +
                             "    <td>"+ dbProduct.getCategory() + "</td>" +
                             "    <td>"+ dbProduct.getPrice() + "</td>" +
                             "  </tr>"
