@@ -39,6 +39,10 @@ public class DisplayCustomerHandler implements HttpHandler{
                             "    <th>Email</th>" +
                             "    <th>TelephoneNumber</th>" +
                             "    <th>AddressId</th>" +
+                            "    <th>Address Line 1</th>" +
+                            "    <th>Address Line 2</th>" +
+                            "    <th>Country</th>" +
+                            "    <th>Postcode</th>" +
                             "    <th>Delete</th>" +
                             "    <th>Update</th>" +
                             "  </tr>" +
@@ -52,7 +56,7 @@ public class DisplayCustomerHandler implements HttpHandler{
                                 "    <td>"+ d.getFirstName() + "</td>" +
                                 "    <td>"+ d.getLastName() + "</td>" +
                                 "    <td>"+ d.getEmail() + "</td>" +
-                                "    <td>"+ d.getCustomerId() + "</td>" +
+                                "    <td>"+ d.getCustomerAddressId() + "</td>" +
                                 "    <td> <a href=\"/delete?id=" + d.getCustomerId() + "\"> delete </a> </td>" +
                                 "    <td> <a href=\"/update?id=" + d.getCustomerId() + "\"> update </a> </td>" +
                                 "  </tr>"

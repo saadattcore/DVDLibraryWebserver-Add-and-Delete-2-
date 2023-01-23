@@ -32,7 +32,7 @@ public class CustomerDAO {
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet result = null;
-        String query = "SELECT * FROM Customer INNER JOIN CustomerAddress WHERE Customer.AddressId = CustomerAddress.AdressId;";
+        String query = "SELECT * FROM Customer INNER JOIN CustomerAddress ON Customer.AddressId = CustomerAddress.AdressId;";
         ArrayList<Customer> customers = new ArrayList<>();
 
         try {

@@ -204,6 +204,11 @@ class Main {
     String email;
     String password;
     String number;
+    int addressId;
+    String addressLine1;
+    String addressLine2;
+    String country;
+    String postcode;
 
     Scanner in = new Scanner(System.in);
     System.out.println("Please enter ID");
@@ -223,6 +228,18 @@ class Main {
 
     System.out.println("Please enter contact number");
     number = in.nextLine();
+
+    System.out.println("Please enter address line 1");
+    addressLine1 = in.nextLine();
+
+    System.out.println("Please enter address line 2");
+    addressLine2 = in.nextLine();
+
+    System.out.println("Please enter country");
+    country = in.nextLine();
+
+    System.out.println("Please enter postcode");
+    postcode = in.nextLine();
 
     return new Customer(id, firstName, lastName, email, password, number);
   }
