@@ -1,5 +1,20 @@
 public class Customer {
     private int customerId;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", telePhoneNumber='" + telePhoneNumber + '\'' +
+                ", CustomerAddressId=" + CustomerAddressId +
+                ", customerAddress=" + customerAddress +
+                '}';
+    }
+
     private String firstName;
     private String lastName;
     private String email;

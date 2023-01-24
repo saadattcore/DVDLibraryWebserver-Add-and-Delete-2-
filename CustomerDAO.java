@@ -38,7 +38,7 @@ public class CustomerDAO {
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
-            System.out.println("DBQuery = " + query);
+            
             result = statement.executeQuery(query); // Execute SQL query and record response to string
             while (result.next()) {
 

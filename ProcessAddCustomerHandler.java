@@ -31,7 +31,7 @@ public class ProcessAddCustomerHandler implements HttpHandler{
 
         int id = Integer.parseInt(parms.get("id"));
         String firstName = parms.get("firstname");
-        String lastName = parms.get("lastname");
+        String lastName = parms.get("secondname");
         String email = parms.get("email");
         String password = parms.get("password");
         String telephone = parms.get("telephone");
@@ -62,10 +62,14 @@ public class ProcessAddCustomerHandler implements HttpHandler{
                             "<thead>" +
                             "  <tr>" +
                             "    <th>ID</th>" +
-                            "    <th>Title</th>" +
-                            "    <th>Genre</th>" +
-                            "    <th>Year</th>" +
-                            "    <th>Rating</th>" +
+                            "    <th>FirstName</th>" +
+                            "    <th>SecondName</th>" +
+                            "    <th>Email</th>" +
+                            "    <th>TelephoneNumber</th>" +
+                            "    <th>AdressLine1</th>" +
+                            "    <th>AddressLine2</th>" +
+                            "    <th>Country</th>" +
+                            "    <th>PostCode</th>" +
 
                             "  </tr>" +
                             "</thead>" +
@@ -79,7 +83,11 @@ public class ProcessAddCustomerHandler implements HttpHandler{
                             "    <td>"+ customer.getLastName() + "</td>" +
                             "    <td>"+ customer.getEmail() + "</td>" +
                             "    <td>"+ customer.getTelePhoneNumber() + "</td>" +
-                            "    <td>"+ customer.getCustomerAddressId() + "</td>" +
+                            "    <td>"+ customer.getCustomerAddress().getAddressLine1() + "</td>" +
+                            "    <td>"+ customer.getCustomerAddress().getAddressLine2() + "</td>" +
+                            "    <td>"+ customer.getCustomerAddress().getCountry() + "</td>" +
+                            "    <td>"+ customer.getCustomerAddress().getPostCode() + "</td>" +
+
                             "  </tr>"
             );
 

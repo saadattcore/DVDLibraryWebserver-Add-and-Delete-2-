@@ -247,7 +247,11 @@ class Main {
     System.out.println("Please enter postcode");
     postcode = in.nextLine();
 
-    return new Customer(id, firstName, lastName, email, password, number);
+    Customer customer  = new Customer(id, firstName, lastName, email, password, number);
+    CustomerAddress address = new CustomerAddress(addressLine1,addressLine2,country,postcode);
+    customer.setCustomerAddress(address);
+
+    return customer;
   }
   private static Customer updateCustomer(Customer customer){
 
