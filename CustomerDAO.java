@@ -32,7 +32,7 @@ public class CustomerDAO {
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet result = null;
-        String query = "SELECT * FROM Customer INNER JOIN CustomerAddress ON Customer.AddressId = CustomerAddress.AdressId;";
+        String query = "SELECT * FROM Customer INNER JOIN CustomerAddress ON Customer.AddressId = CustomerAddress.AdressId";
         ArrayList<Customer> customers = new ArrayList<>();
 
         try {
@@ -54,7 +54,7 @@ public class CustomerDAO {
                 String country = result.getString("Country");
                 String postCode = result.getString("PostCode");
                 Customer customer = new Customer(id,firstName,secondName,email,password,telephone);
-                CustomerAddress address = new CustomerAddress(addressId,addressLine1,addressLine2,country,postCode);
+                CustomerAddress address = new CustomerAddress(addressLine1,addressLine2,country,postCode);
 
                 customer.setCustomerAddress(address);
                 customers.add(customer);
@@ -123,10 +123,15 @@ public class CustomerDAO {
         Statement statement = null;
         int result = 0;
 
-       Customer customer =  getCustomer(cutsomerId);
+       ArrayList<Customer> customers =  getAllCustomers();
+
+        Customer deletedCustomer =
+                customers
+                        .stream().filter(c -> c.getCustomerId() == cutsomerId).findAny().orElse(null);
+
 
         String query = "DELETE FROM Customer WHERE CustomerId = " + cutsomerId + ";";
-        String deleteAddressQuery = "DELETE FROM CustomerAddress WHERE AddressId =" + customer.getCustomerAddressId() + ";";
+        //String deleteAddressQuery = "DELETE FROM CustomerAddress WHERE AddressId =" + customer.getCustomerAddressId() + ";";
 
         try {
             dbConnection = getDBConnection();
@@ -134,7 +139,7 @@ public class CustomerDAO {
             System.out.println(query);
             // execute SQL query
             result = statement.executeUpdate(query);
-            result = statement.executeUpdate(deleteAddressQuery);
+         //   result = statement.executeUpdate(deleteAddressQuery);
         } finally {
             if (statement != null) {
                 statement.close();
@@ -154,11 +159,11 @@ public class CustomerDAO {
         Connection dbConnection = null;
         Statement statement = null;
 
-        String query = "UPDATE Customer " +  "FirstName = '"
+        String query = "UPDATE  Customer SET " +  "FirstName = '"
                 + customer.getFirstName() + "'," + "SecondName= '" + customer.getLastName() + "'," + "Email= '" + customer.getEmail()
-                + "'," + "Password= '" + customer.getPassword() + "'"
-                + "TelephoneNumber = " + customer.getTelePhoneNumber()
-                +" WHERE ID = " + customer.getCustomerId()
+                + "'," + "Password= '" + customer.getPassword() + "',"
+                + "TelephoneNumber = '" + customer.getTelePhoneNumber() + "'"
+                +" WHERE CustomerId = " + customer.getCustomerId()
                 + ";";
 
         try {
@@ -188,13 +193,32 @@ public class CustomerDAO {
     public boolean addCustomer(Customer in) throws SQLException{
         Connection dbConnection = null;
         Statement statement = null;
+        Statement statementAddress = null;
 
-        String update = "INSERT INTO Customer (FirstName, SecondName, Email, Password, TelephoNumber) VALUES ("+in.getFirstName()+",'"+in.getLastName()+"','"+in.getEmail()+"','"+in.getPassword()+ "',"+in.getTelePhoneNumber()+");";
+
+        String insertAddress = "INSERT INTO CustomerAddress (AddressLine1, AddressLine2, Country, PostCode) VALUES ('"+in.getCustomerAddress().getAddressLine1()+"','"+in.getCustomerAddress().getAddressLine2()+"','"+in.getCustomerAddress().getCountry()+"','"+in.getCustomerAddress().getPostCode()+"');";
         boolean ok = false;
         try {
             dbConnection = getDBConnection();
-            statement = dbConnection.createStatement();
+
+            statementAddress = dbConnection.createStatement();
+            statementAddress.execute(insertAddress);
+
+            ResultSet rs = statementAddress.getGeneratedKeys();
+            rs.next();
+            int addressAddedID =  rs.getInt(1);
+
+
+            String update = String.format("INSERT INTO Customer (FirstName,SecondName,Email,Password,TelephoneNumber,AddressId) VALUES('%s','%s','%s','%s','%s',%d)",in.getFirstName(),in.getLastName(),in.getEmail(),in.getPassword(),in.getTelePhoneNumber(),addressAddedID);
+
+         //   String update = "INSERT INTO Customer (FirstName, SecondName, Email, Password, TelephoneNumber, AddressId) VALUES ("+in.getFirstName()+",'"+in.getLastName()+"','"+in.getEmail()+"','"+in.getPassword()+ "',"+in.getTelePhoneNumber()+"',"+ addressAddedID +");";
+
             System.out.println(update);
+
+            statement = dbConnection.createStatement();
+
+            System.out.println(update);
+
             // execute SQL query
             statement.executeUpdate(update);
             ok = true;

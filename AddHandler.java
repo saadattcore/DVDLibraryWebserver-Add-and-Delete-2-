@@ -36,17 +36,19 @@ public class AddHandler implements HttpHandler{
                     "<label for=\"description\">Description</label> " +
                     "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"> " +
 
-                    "<label for=\"type 1\">Type 1</label> " +
-                    "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"> " +
+                    "<label for=\"type1\">Type 1</label> " +
+                    "<input type=\"text\" class=\"form-control\" name=\"type1\" id=\"type1\"> " +
 
-                    "<label for=\"type 2\">Type 2</label> " +
-                    "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"> " +
+                    "<label for=\"type2\">Type 2</label> " +
+                    "<input type=\"text\" class=\"form-control\" name=\"type2\" id=\"type2\"> " +
 
                     "<label for=\"category\">Category</label> " +
                     "<input type=\"text\" class=\"form-control\" name=\"category\" id=\"category\"> " +
 
                     "<label for=\"price\">Price</label> " +
                     "<input type=\"text\" class=\"form-control\" name=\"price\" id=\"price\" >" +
+
+
                     "<button type=\"submit\" class=\"btn btn-primary\">Submit</button> " +
                     "</div>" +
                     "</form>" +

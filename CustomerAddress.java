@@ -6,8 +6,8 @@ public class CustomerAddress {
     private String country;
     private String postCode;
 
-    public CustomerAddress(int addressId , String addressLine1, String addressLine2, String country, String postCode) {
-        this.addressId = addressId;
+    public CustomerAddress( String addressLine1, String addressLine2, String country, String postCode) {
+       // this.addressId = addressId;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.country = country;

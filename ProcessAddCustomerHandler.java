@@ -35,11 +35,16 @@ public class ProcessAddCustomerHandler implements HttpHandler{
         String email = parms.get("email");
         String password = parms.get("password");
         String telephone = parms.get("telephone");
-
+        String addressID = parms.get("");
+        String addrressLine1 = parms.get("addressline1");
+        String addrressLine2 = parms.get("addressline2");
+        String country = parms.get("country");
+        String postCode = parms.get("postcode");
 
 
         System.out.println("about to create customer"); // Debugging message
         Customer customer = new Customer(id,firstName,lastName,email,password,telephone);
+        customer.setCustomerAddress(new CustomerAddress(addrressLine1,addrressLine2,country,postCode));
         System.out.println("DVD to Add" + customer);
 
         try {

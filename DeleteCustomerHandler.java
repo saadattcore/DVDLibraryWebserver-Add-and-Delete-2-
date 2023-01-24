@@ -1,4 +1,5 @@
 import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -6,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class DeleteCustomerHandler {
+public class DeleteCustomerHandler implements HttpHandler {
     public void handle(HttpExchange he) throws IOException {
 
         System.out.println("Delete Handler Called");
@@ -30,7 +31,10 @@ public class DeleteCustomerHandler {
 
         try{
             // get the dvd details before we delete from the Database
-            Customer deletedCustomer = customers.getCustomer(ID);
+            Customer deletedCustomer =
+                             customers.getAllCustomers()
+                                     .stream().filter(c -> c.getCustomerId() == ID).findAny().orElse(null);
+
 
             // actually delete from database;
             customers.deleteCustomer(ID);

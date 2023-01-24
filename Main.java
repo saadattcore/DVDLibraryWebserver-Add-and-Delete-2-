@@ -24,6 +24,12 @@ class Main {
     server.createContext("/customers", new DisplayCustomerHandler());
     server.createContext("/addCustomers", new AddCustomerHandler());
     server.createContext("/processShoppingCartHandler", new ProcessShoppingCartHandler());
+    server.createContext("/processAddCustomerHandler", new ProcessAddCustomerHandler());
+    server.createContext("/deleteCustomer", new DeleteCustomerHandler());
+    server.createContext("/customerUpdate", new UpdateCustomerHandler());
+    server.createContext("/processCustomerUpdate", new ProcessUpdateCustomerHandler());
+
+
 
 
 

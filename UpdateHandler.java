@@ -56,13 +56,13 @@ public class UpdateHandler implements HttpHandler{
                             "\">"
                             +
 
-                            "<label for=\"genre\">Type 1</label> " +
-                            "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"" + " value=\""  + updateProduct.getType1() +
+                            "<label for=\"type1\">Type 1</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"type1\" id=\"type1\"" + " value=\""  + updateProduct.getType1() +
                             "\">"
                             +
 
-                            "<label for=\"genre\">Type 2</label> " +
-                            "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"" + " value=\""  + updateProduct.getType2() +
+                            "<label for=\"type2\">Type 2</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"type2\" id=\"type2\"" + " value=\""  + updateProduct.getType2() +
                             "\">"
                             +
 

@@ -1,4 +1,5 @@
 import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -6,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class UpdateCustomerHandler {
+public class UpdateCustomerHandler implements HttpHandler {
     public void handle(HttpExchange he) throws IOException {
 
         System.out.println("Update Customer Handler Called");
@@ -34,45 +35,41 @@ public class UpdateCustomerHandler {
 
             out.write(
                     "<html>" +
-                            "<head> <title>DVD Library</title> "+
+                            "<head> <title>Customer Update</title> "+
                             "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css\" integrity=\"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2\" crossorigin=\"anonymous\">" +
                             "</head>" +
                             "<body>" +
                             "<div class=\"container\">"+
-                            "<h1> Add DVD</h1>"+
-                            "<form method=\"get\" action=\"/processUpdateProduct\">" +
+                            "<h1> Update Customer</h1>"+
+                            "<form method=\"get\" action=\"/processCustomerUpdate\">" +
                             "<div class=\"form-group\"> "+
                             "<label for=\"ID\">Customer ID</label> " +
                             "<input type=\"text\" class=\"form-control\" name=\"id\" id=\"id\"" + " value=\""  + updateCustomer.getCustomerId() +
                             "\">" +
 
-                            "<label for=\"title\">FirstName</label> " +
-                            "<input type=\"text\" class=\"form-control\" name=\"sku\" id=\"sku\"" + " value=\""  + updateCustomer.getFirstName() +
+                            "<label for=\"firstname\">FirstName</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"firstname\" id=\"firstname\"" + " value=\""  + updateCustomer.getFirstName() +
                             "\">" +
 
-                            "<label for=\"genre\">SecondName</label> " +
-                            "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"" + " value=\""  + updateCustomer.getLastName() +
+                            "<label for=\"secondname\">SecondName</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"secondname\" id=\"secondname\"" + " value=\""  + updateCustomer.getLastName() +
                             "\">"
                             +
 
-                            "<label for=\"genre\">Email</label> " +
-                            "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"" + " value=\""  + updateCustomer.getEmail() +
+                            "<label for=\"email\">Email</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"email\" id=\"email\"" + " value=\""  + updateCustomer.getEmail() +
                             "\">"
                             +
 
-                            "<label for=\"genre\">Password</label> " +
-                            "<input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\"" + " value=\""  + updateCustomer.getPassword() +
+                            "<label for=\"password\">Password</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"password\" id=\"password\"" + " value=\""  + updateCustomer.getPassword() +
                             "\">"
                             +
 
-                            "<label for=\"year\">Phone number</label> " +
-                            "<input type=\"text\" class=\"form-control\" name=\"category\" id=\"category\"" + " value=\""  + updateCustomer.getTelePhoneNumber() +
+                            "<label for=\"telephonenumber\">Phone number</label> " +
+                            "<input type=\"text\" class=\"form-control\" name=\"telephonenumber\" id=\"telephonenumber\"" + " value=\""  + updateCustomer.getTelePhoneNumber() +
                             "\">"
-                            +
 
-                            "<label for=\"rating\">Address ID</label> " +
-                            "<input type=\"text\" class=\"form-control\" name=\"price\" id=\"price\"" + " value=\""  + updateCustomer.getCustomerAddressId() +
-                            "\">"
                             +
                             "<button type=\"submit\" class=\"btn btn-primary\">Submit</button> " +
                             "</div>" +

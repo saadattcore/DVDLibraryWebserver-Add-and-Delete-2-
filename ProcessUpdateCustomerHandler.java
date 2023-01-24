@@ -7,7 +7,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Map;
 
-public class ProcessUpdateProduct implements HttpHandler{
+public class ProcessUpdateCustomerHandler implements HttpHandler{
     public void handle(HttpExchange he) throws IOException {
 
         System.out.println("ProcessUpdateDVD Called");
@@ -25,41 +25,39 @@ public class ProcessUpdateProduct implements HttpHandler{
         //get ID number
 
 
-        ProductDAO productDAO = new ProductDAO();
+        CustomerDAO customerDAO = new CustomerDAO();
 
         System.out.println("about to get data");
 
-        String sku = parms.get("sku");
-        String description = parms.get("description");
-        String type1 = parms.get("type1");
-        String type2 = parms.get("type2");
-        String category = parms.get("category");
-        double price = Double.parseDouble(parms.get("price"));
         int id = Integer.parseInt(parms.get("id"));
-
+        String firstName = parms.get("firstname");
+        String secondName = parms.get("secondname");
+        String email = parms.get("email");
+        String password = parms.get("password");
+        String telephone = parms.get("telephonenumber");
 
         try {
 
-            Product dbProduct =  productDAO.getProduct(id);
+            Customer dbCustomer =  customerDAO.getCustomer(id);
 
-            if(dbProduct == null)
+            if(dbCustomer == null)
             {
                 System.out.println("Product not found");
                 return;
             }
 
-            dbProduct.setSKU(sku);
-            dbProduct.setCategory(category);
-            dbProduct.setDescription(description);
-            dbProduct.setType1(type1);
-            dbProduct.setType2(type2);
-            dbProduct.setPrice(price);
+            dbCustomer.setFirstName(firstName);
+            dbCustomer.setLastName(secondName);
+            dbCustomer.setEmail(email);
+            dbCustomer.setPassword(password);
+            dbCustomer.setTelePhoneNumber(telephone);
 
-            System.out.println("about to update dvd"); // Debugging message
 
-            System.out.println("DVD to Add" + dbProduct);
+            System.out.println("about to update customer"); // Debugging message
 
-            productDAO.updateProduct(dbProduct); // add to database
+            System.out.println("Customer to update" + dbCustomer);
+
+            customerDAO.updateCustomer(dbCustomer); // add to database
 
             out.write(
                     "<html>" +
@@ -72,12 +70,12 @@ public class ProcessUpdateProduct implements HttpHandler{
                             "<thead>" +
                             "  <tr>" +
                             "    <th>ID</th>" +
-                            "    <th>SKU</th>" +
-                            "    <th>Description</th>" +
-                            "    <th>Type 1</th>" +
-                            "    <th>Type 2</th>" +
-                            "    <th>Category</th>" +
-                            "    <th>Price</th>" +
+                            "    <th>FirstName</th>" +
+                            "    <th>SecondName</th>" +
+                            "    <th>Email</th>" +
+                            "    <th>Password</th>" +
+                            "    <th>Telephone</th>" +
+
 
                             "  </tr>" +
                             "</thead>" +
@@ -85,13 +83,12 @@ public class ProcessUpdateProduct implements HttpHandler{
 
             out.write(
                     "  <tr>"       +
-                            "    <td>"+ dbProduct.getID() + "</td>" +
-                            "    <td>"+ dbProduct.getSKU() + "</td>" +
-                            "    <td>"+ dbProduct.getDescription() + "</td>" +
-                            "    <td>"+ dbProduct.getType1() + "</td>" +
-                            "    <td>"+ dbProduct.getType2() + "</td>" +
-                            "    <td>"+ dbProduct.getCategory() + "</td>" +
-                            "    <td>"+ dbProduct.getPrice() + "</td>" +
+                            "    <td>"+ dbCustomer.getCustomerId() + "</td>" +
+                            "    <td>"+ dbCustomer.getFirstName() + "</td>" +
+                            "    <td>"+ dbCustomer.getLastName() + "</td>" +
+                            "    <td>"+ dbCustomer.getEmail() + "</td>" +
+                            "    <td>"+ dbCustomer.getPassword() + "</td>" +
+                            "    <td>"+ dbCustomer.getTelePhoneNumber() + "</td>" +
                             "  </tr>"
             );
 

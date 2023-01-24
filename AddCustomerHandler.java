@@ -44,6 +44,20 @@ public class AddCustomerHandler implements HttpHandler{
 
                         "<label for=\"telephone\">TelephoneNumber</label> " +
                         "<input type=\"text\" class=\"form-control\" name=\"telephone\" id=\"telephone\" >" +
+
+                        "<label for=\"addressline2\">AddressLine1</label> " +
+                        "<input type=\"text\" class=\"form-control\" name=\"addressline1\" id=\"addressline1\"> " +
+
+                        "<label for=\"addressline2\">AddressLine1</label> " +
+                        "<input type=\"text\" class=\"form-control\" name=\"addressline2\" id=\"addressline2\"> " +
+
+                        "<label for=\"country\">Country</label> " +
+                        "<input type=\"text\" class=\"form-control\" name=\"country\" id=\"country\"> " +
+
+                        "<label for=\"postcode\">PostCode</label> " +
+                        "<input type=\"text\" class=\"form-control\" name=\"postcode\" id=\"postcode\"> " +
+
+
                         "<button type=\"submit\" class=\"btn btn-primary\">Submit</button> " +
                         "</div>" +
                         "</form>" +

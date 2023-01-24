@@ -38,7 +38,7 @@ public class DisplayCustomerHandler implements HttpHandler{
                             "    <th>SecondName</th>" +
                             "    <th>Email</th>" +
                             "    <th>TelephoneNumber</th>" +
-                            "    <th>AddressId</th>" +
+
                             "    <th>Address Line 1</th>" +
                             "    <th>Address Line 2</th>" +
                             "    <th>Country</th>" +
@@ -56,9 +56,14 @@ public class DisplayCustomerHandler implements HttpHandler{
                                 "    <td>"+ d.getFirstName() + "</td>" +
                                 "    <td>"+ d.getLastName() + "</td>" +
                                 "    <td>"+ d.getEmail() + "</td>" +
-                                "    <td>"+ d.getCustomerAddressId() + "</td>" +
-                                "    <td> <a href=\"/delete?id=" + d.getCustomerId() + "\"> delete </a> </td>" +
-                                "    <td> <a href=\"/update?id=" + d.getCustomerId() + "\"> update </a> </td>" +
+                                "    <td>"+ d.getTelePhoneNumber() + "</td>" +
+
+                                "    <td>"+ d.getCustomerAddress().getAddressLine1() + "</td>" +
+                                "    <td>"+ d.getCustomerAddress().getAddressLine2() + "</td>" +
+                                "    <td>"+ d.getCustomerAddress().getCountry() + "</td>" +
+                                "    <td>"+ d.getCustomerAddress().getPostCode() + "</td>" +
+                                "    <td> <a href=\"/deleteCustomer?id=" + d.getCustomerId() + "\"> delete </a> </td>" +
+                                "    <td> <a href=\"/customerUpdate?id=" + d.getCustomerId() + "\"> update </a> </td>" +
                                 "  </tr>"
                 );
             }
